@@ -61,14 +61,11 @@ $and: [
 } ).sort({cuisine: -1})
 
 
-db.addresses.find({name:/^Wil/},
-{name: 1,restaurant_id: 1,cuisine: 1,borough: 1})
+db.addresses.find({name:/^Wil/},{name: 1,restaurant_id: 1,cuisine: 1,borough: 1})
 
-db.addresses.find({"name": { "$regex": "ces$" }},
-{name: 1,restaurant_id: 1,cuisine: 1,borough: 1})
+db.addresses.find({"name": { "$regex": "ces$" }},{name: 1,restaurant_id: 1,cuisine: 1,borough: 1})
 
-db.addresses.find({name:/Reg/},
-{name: 1,restaurant_id: 1,cuisine: 1,borough: 1})
+db.addresses.find({name:/Reg/},{name: 1,restaurant_id: 1,cuisine: 1,borough: 1})
 
 
 db.addresses.find({
@@ -77,56 +74,35 @@ $and: [
 {$or: [
     {cuisine:'American' },
     {cuisine:'Chinese' }
-]}
-]})
+    ]}]})
 
 db.addresses.find({$or: [
     {borough:'Staten Island' },
 {borough:'Bronxor Brooklyn' },
-    {borough:'Queens' }
-]},{name: 1,restaurant_id: 1,cuisine: 1,borough: 1})
+    {borough:'Queens' }]},{name: 1,restaurant_id: 1,cuisine: 1,borough: 1})
 
 
-db.addresses.find({ borough: { $nin: [ 'Staten Island', 'Bronxor Brooklyn','Queens' ]} }
-,{name: 1,restaurant_id: 1,cuisine: 1,borough: 1}
-)
+db.addresses.find({ borough: { $nin: [ 'Staten Island', 'Bronxor Brooklyn','Queens' ]} },{name: 1,restaurant_id: 1,cuisine: 1,borough: 1})
 
-db.addresses.find({"grades.score":{$lte:10}}
-,{name: 1,restaurant_id: 1,cuisine: 1,borough: 1}
-)
+db.addresses.find({"grades.score":{$lte:10}},{name: 1,restaurant_id: 1,cuisine: 1,borough: 1})
 
 db.addresses.find({$or: [
 { cuisine: { $nin: [ 'American', 'Chinees','Queens' ]} },
-{name:/^Wil/}
-]}
-,{name: 1,restaurant_id: 1,cuisine: 1,borough: 1}
-)
+{name:/^Wil/}]},{name: 1,restaurant_id: 1,cuisine: 1,borough: 1})
 
 db.addresses.find({
 $and: [
     {"grades.score": 11 },
     {"grades.grade": 'A' },
-    {date : ISODate("2014-08-11T00:00:00Z")}
- 
-]
-},
-{name: 1,restaurant_id: 1,cuisine: 1,borough: 1,"grades.grade": 1} )
+    {date : ISODate("2014-08-11T00:00:00Z")}]},{name: 1,restaurant_id: 1,cuisine: 1,borough: 1,"grades.grade": 1} )
 
 db.addresses.find().sort({name: 1})
 
 db.addresses.find().sort({name: -1})
 
-db.addresses.find(
-{name:/mon/}
+db.addresses.find({name:/mon/},{name: 1,restaurant_id: 1,cuisine: 1,borough: 1,"address.coord": 1})
 
-,{name: 1,restaurant_id: 1,cuisine: 1,borough: 1,"address.coord": 1}
-)
-
-db.addresses.find(
-{name:/^Mad/}
-
-,{name: 1,restaurant_id: 1,cuisine: 1,borough: 1,"address.coord": 1}
-)
+db.addresses.find({name:/^Mad/},{name: 1,restaurant_id: 1,cuisine: 1,borough: 1,"address.coord": 1})
 
 
 
